@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <div class="header-content">
             <div class="logo-container">
-                <h1 class="logo">M.C Coiffure</h1>
+                <h1 class="logo">M.C <span class="cursive-text">Coiffure</span></h1>
             </div>
             <nav class="navbar">
                 <ul class="nav-menu">
@@ -34,10 +34,12 @@
     </header>
 
     <section id="accueil" class="hero">
+        <div class="decorative-shape shape-circle" style="top: 15%; right: 10%;"></div>
+        <div class="decorative-shape shape-blob" style="bottom: 15%; left: 10%;"></div>
         <div class="hero-content card-gradient">
             <h1 class="fade-in typing">Mon portfolio créatif</h1>
-            <h2 class="slide-in highlight-text">MAEVA C.</h2>
-            <p class="fade-in">Découvrez mes réalisations et créations capillaires</p>
+            <h2 class="slide-in cursive-text highlight-text">MAEVA C.</h2>
+            <p class="fade-in elegant-text">Découvrez mes réalisations et créations capillaires</p>
             <div class="hero-buttons"> <!-- Added wrapper div -->
                 <a href="#galerie" class="btn btn-primary btn-3d bounce">Voir mes réalisations</a>
                 <a href="https://www.instagram.com/maev_acoiff/" target="_blank" class="btn btn-secondary glow" aria-label="Instagram">
@@ -47,54 +49,56 @@
         </div>
     </section>
 
-    <section id="a-propos" class="about">
+    <section id="a-propos" class="about gradient-section">
         <div class="container">
             <div class="section-header">
-                <h2>À propos</h2>
+                <h2>À <span class="highlight-word">propos</span></h2>
                 <div class="separator"></div>
             </div>
             <div class="about-content">
                 <div class="about-img reveal-left rotate-hover">
                     <img src="07C49BC1-1ADB-480F-9058-F2E94CA0BAB3.jpeg" alt="Maéva Coiffure">
                 </div>
-                <div class="about-text reveal-right">
-                    <h3 class="float">Maéva, passionnée de coiffure</h3>
+                <div class="about-text reveal-right section-with-border">
+                    <h3 class="float cursive-text">Maéva, <span class="accent-text">passionnée</span> de coiffure</h3>
                     <p>Bienvenue dans mon univers créatif ! Passionnée par l'art de la coiffure, je suis actuellement en formation BP Coiffure pour perfectionner mes techniques et laisser libre cours à ma créativité.</p>
                     <p>J'aime explorer les nouvelles tendances, maîtriser les classiques et surtout, adapter chaque coupe et couleur à la personnalité de mes client(e)s.</p>
-                    <p>Ce portfolio est une vitrine de mon parcours, de mes expérimentations et des réalisations dont je suis fière !</p>
+                    <p class="quote">Ce portfolio est une vitrine de mon parcours, de mes expérimentations et des réalisations dont je suis fière.</p>
+                    <p>Découvrez mon travail et n'hésitez pas à me contacter pour discuter de votre prochain projet capillaire !</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="competences" class="skills-section">
+        <div class="decorative-shape shape-blob" style="top: 10%; right: 5%;"></div>
         <div class="container">
             <div class="section-header">
-                <h2>Mes Compétences</h2>
+                <h2 class="text-shadow">Mes <span class="highlight-word">Compétences</span></h2>
                 <div class="separator"></div>
             </div>
             <div class="skills">
-                <div class="skill reveal delay-1 card-hover">
+                <div class="skill reveal delay-1 card-hover card-modern">
                     <span>Coupes (Femme, Homme, Enfant)</span>
                     <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
                 </div>
-                <div class="skill reveal delay-2 card-hover">
+                <div class="skill reveal delay-2 card-hover card-modern">
                     <span>Colorations & Mèches</span>
                     <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
                 </div>
-                <div class="skill reveal delay-3 card-hover">
+                <div class="skill reveal delay-3 card-hover card-modern">
                     <span>Balayages & Ombrés</span>
                     <div class="skill-bar"><div class="skill-progress" data-width="78"></div></div>
                 </div>
-                <div class="skill reveal delay-4 card-hover">
+                <div class="skill reveal delay-4 card-hover card-modern">
                     <span>Coiffures événementielles (Chignons, Tresses)</span>
                     <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
                 </div>
-                <div class="skill reveal delay-5 card-hover">
+                <div class="skill reveal delay-5 card-hover card-modern">
                     <span>Techniques Modernes (Lissage, Permanente)</span>
                     <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
                 </div>
-                 <div class="skill reveal card-hover">
+                 <div class="skill reveal card-hover card-modern">
                     <span>Conseil & Diagnostic</span>
                     <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
                 </div>
@@ -102,18 +106,20 @@
         </div>
     </section>
 
-    <section id="galerie" class="gallery">
+    <section id="galerie" class="gallery gradient-section">
+        <div class="decorative-shape shape-circle" style="bottom: 20%; right: 15%;"></div>
         <div class="container">
             <div class="section-header">
-                <h2>Galerie</h2>
+                <h2 class="text-shadow">Ma <span class="highlight-word">Galerie</span></h2>
                 <div class="separator"></div>
+                <p class="elegant-text">Quelques-unes de mes <span class="accent-text">créations</span> capillaires</p>
             </div>
             <div class="gallery-container">
                 <div class="gallery-item reveal zoom-in delay-1 card-gradient">
                     <img src="4C745E66-3EA4-4A91-9C53-A22CAD74A401.jpeg" alt="Coiffure 1">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h3>Coupe moderne</h3>
+                            <h3 class="cursive-text">Coupe moderne</h3>
                             <p>Réalisation en formation</p>
                         </div>
                     </div>
@@ -122,7 +128,7 @@
                     <img src="5E148B60-E91C-4D24-AC65-B53BD6A489FB.jpeg" alt="Coiffure 2">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h3>Coloration</h3>
+                            <h3 class="cursive-text">Coloration</h3>
                             <p>Projet créatif</p>
                         </div>
                     </div>
@@ -131,7 +137,7 @@
                     <img src="9A1AA7A0-BF11-4EA5-9BFF-EF524387C122.jpeg" alt="Coiffure 3">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h3>Coiffure de soirée</h3>
+                            <h3 class="cursive-text">Coiffure de soirée</h3>
                             <p>Travail pratique</p>
                         </div>
                     </div>
@@ -140,7 +146,7 @@
                     <img src="54A8441C-3C0C-4F3A-9AF9-0DACFC63A772.jpeg" alt="Coiffure 4">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h3>Coupe courte</h3>
+                            <h3 class="cursive-text">Coupe courte</h3>
                             <p>Exercice technique</p>
                         </div>
                     </div>
@@ -149,7 +155,7 @@
                     <img src="70C1785A-02B3-4388-B992-0D08CF3FF760.jpeg" alt="Coiffure 5">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h3>Coloration vibrante</h3>
+                            <h3 class="cursive-text">Coloration vibrante</h3>
                             <p>Création personnelle</p>
                         </div>
                     </div>
@@ -158,7 +164,7 @@
                     <img src="92B5F9D9-CE27-4F42-9DAF-3602DEA93CAE.jpeg" alt="Coiffure 6">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h3>Coiffure élégante</h3>
+                            <h3 class="cursive-text">Coiffure élégante</h3>
                             <p>Projet de formation</p>
                         </div>
                     </div>
@@ -167,7 +173,7 @@
                     <img src="B235DE40-449F-426B-9A63-72D49245B4FA.jpeg" alt="Coiffure 7">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h3>Transformation</h3>
+                            <h3 class="cursive-text">Transformation</h3>
                             <p>Avant/Après</p>
                         </div>
                     </div>
@@ -176,7 +182,7 @@
                     <img src="BDCBF1AA-BADF-4942-AE75-68E9FFFE672A.jpeg" alt="Coiffure 8">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h3>Style urbain</h3>
+                            <h3 class="cursive-text">Style urbain</h3>
                             <p>Expérimentation créative</p>
                         </div>
                     </div>
@@ -185,7 +191,7 @@
                     <img src="E0B939E8-EFE4-4CD4-8925-CDC2713E781B.jpeg" alt="Coiffure 9">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h3>Ondulations</h3>
+                            <h3 class="cursive-text">Ondulations</h3>
                             <p>Technique apprise</p>
                         </div>
                     </div>
@@ -194,27 +200,28 @@
                     <img src="FFC3E667-2016-473B-8B1E-06B2EF7A6064.jpeg" alt="Coiffure 10">
                     <div class="gallery-overlay">
                         <div class="gallery-info">
-                            <h3>Coupe homme</h3>
+                            <h3 class="cursive-text">Coupe homme</h3>
                             <p>Atelier pratique</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="shape-wave"></div>
     </section>
 
     <footer class="footer wave-bg">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <h2 class="fade-up">M.C Coiffure</h2>
-                    <p class="fade-up delay-1">Portfolio créatif de coiffure</p>
+                    <h2 class="fade-up">M.C <span class="cursive-text">Coiffure</span></h2>
+                    <p class="fade-up delay-1 elegant-text">Portfolio créatif de coiffure</p>
                     <div class="social-footer">
                         <a href="https://www.instagram.com/maev_acoiff/" target="_blank" class="social-icon heartbeat"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
-                    <h3 class="fade-up">Liens rapides</h3>
+                    <h3 class="fade-up cursive-text">Liens rapides</h3>
                     <ul>
                         <li class="fade-right delay-1"><a href="#accueil">Accueil</a></li>
                         <li class="fade-right delay-2"><a href="#a-propos">À propos</a></li>

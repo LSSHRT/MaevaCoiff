@@ -28,6 +28,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
+    font-size: 16px;
 }
 
 a {
@@ -66,10 +67,13 @@ h1, h2, h3, h4 {
 
 h1 {
     font-size: 3.5rem;
+    letter-spacing: -0.5px;
 }
 
 h2 {
     font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
 }
 
 h3 {
@@ -78,6 +82,88 @@ h3 {
 
 p {
     margin-bottom: 15px;
+    font-weight: 300;
+    font-size: 1.05rem;
+}
+
+.cursive-text {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600;
+}
+
+.elegant-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+.accent-text {
+    color: var(--accent-color);
+}
+
+.highlight-word {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+.highlight-word::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    width: 100%;
+    height: 8px;
+    background-color: rgba(var(--primary-color-rgb), 0.3);
+    z-index: -1;
+    transform: skew(-12deg);
+}
+
+.large-letter::first-letter {
+    font-size: 200%;
+    font-weight: 700;
+    color: var(--accent-color);
+    float: left;
+    margin-right: 5px;
+    line-height: 0.8;
+    padding-right: 2px;
+    margin-top: 5px;
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quote {
+    position: relative;
+    padding: 20px 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 30px 0;
+    color: var(--secondary-color);
+}
+
+.quote::before {
+    content: '"';
+    font-family: Georgia, serif;
+    font-size: 4rem;
+    position: absolute;
+    left: 0;
+    top: -20px;
+    color: rgba(var(--lavender-rgb), 0.5);
+}
+
+.quote::after {
+    content: '"';
+    font-family: Georgia, serif;
+    font-size: 4rem;
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    color: rgba(var(--lavender-rgb), 0.5);
 }
 
 /* Buttons */
