@@ -69,34 +69,93 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', revealElements);
     revealElements(); // Initial check on page load
 
-    // Skill bars animation
+    // Skill bars animation using data-width attribute
     function animateSkillBars() {
-        const skillBars = document.querySelectorAll('.skill-progress');
-        
-        skillBars.forEach(bar => {
-            const width = bar.style.width;
-            bar.style.width = '0';
-            
-            setTimeout(() => {
-                bar.style.width = width;
-            }, 500);
+        const skillProgressBars = document.querySelectorAll('.skill-progress');
+
+        skillProgressBars.forEach(bar => {
+            const targetWidth = bar.getAttribute('data-width');
+            // Ensure the bar is revealed before animating width
+            const skillElement = bar.closest('.skill');
+            if (skillElement && skillElement.classList.contains('active')) {
+                 // Set initial width to 0 if not already animated
+                 if (bar.style.width === '' || bar.style.width === '0px') {
+                    bar.style.width = '0%';
+                    // Use a small timeout to allow the browser to render the 0 width before transitioning
+                        setTimeout(() => {
+                            bar.style.width = targetWidth + '%'; // Set width style with %
+                            // Ensure the data-width attribute remains just the number for the ::after content
+                            // No need to setAttribute here as it should already be correct from HTML
+                        }, 100); // Small delay before starting animation
+                 }
+            } else {
+                 // Reset width if element is not active/visible
+                 bar.style.width = '0%';
+                 // Ensure data-width attribute remains just the number
+                 // No need to setAttribute here if it's correct in HTML
+            }
         });
     }
 
-    // Use Intersection Observer for skill bars
-    const aboutSection = document.querySelector('.about');
-    
-    if (aboutSection) {
-        const observer = new IntersectionObserver((entries) => {
+    // Add percentage sign directly in CSS content property using the data attribute
+    // This requires modifying the CSS again slightly. Let's do that after this JS fix.
+    // For now, the JS is fixed to not add the extra %.
+
+    // Use Intersection Observer for skill bars animation trigger
+    const skillsSection = document.querySelector('.skills-section'); // Target the new skills section
+
+    if (skillsSection) {
+        const skillsObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
+                // Check if the skills section itself is intersecting
                 if (entry.isIntersecting) {
+                    // Find all skill elements within the section
+                    const skillsInView = skillsSection.querySelectorAll('.skill.reveal');
+                    skillsInView.forEach(skillEl => {
+                        // Add 'active' class if not already added by the main reveal observer
+                        if (!skillEl.classList.contains('active')) {
+                             skillEl.classList.add('active');
+                        }
+                    });
+                    // Animate the bars now that the section is visible
                     animateSkillBars();
-                    observer.unobserve(entry.target);
+                    // Optional: Unobserve after first animation if you only want it once
+                    // observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
-        
-        observer.observe(aboutSection);
+        }, { threshold: 0.2 }); // Trigger when 20% of the section is visible
+
+        skillsObserver.observe(skillsSection);
+
+        // Also call animateSkillBars within the main reveal function
+        // to handle cases where skills are already visible on load
+    }
+
+     // Modify the main reveal function to also trigger skill bar animation
+     function revealElements() {
+        const reveals = document.querySelectorAll('.reveal');
+        const windowHeight = window.innerHeight;
+
+        reveals.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+
+            if (elementTop < windowHeight - elementVisible) {
+                element.classList.add('active');
+                // If the revealed element is a skill, trigger animation check
+                if (element.classList.contains('skill')) {
+                    animateSkillBars();
+                }
+            }
+            // Optional: Remove 'active' class if element scrolls out of view
+            // else {
+            //     element.classList.remove('active');
+            //     if (element.classList.contains('skill')) {
+            //         const progressBar = element.querySelector('.skill-progress');
+            //         if (progressBar) progressBar.style.width = '0%';
+            //     }
+            // }
+        });
     }
 
     // Testimonial Slider

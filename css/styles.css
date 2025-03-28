@@ -104,6 +104,25 @@ p {
     box-shadow: var(--shadow);
 }
 
+/* Add style for secondary button */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--light-color); /* White text for hero */
+    border: 2px solid var(--light-color); /* White border */
+}
+
+.btn-secondary:hover {
+    background-color: var(--light-color);
+    color: var(--dark-color); /* Dark text on hover */
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.btn-secondary i { /* Style for icon inside button */
+    margin-right: 8px;
+}
+
+
 /* Section Header */
 .section-header {
     text-align: center;
@@ -248,11 +267,12 @@ p {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('4C745E66-3EA4-4A91-9C53-A22CAD74A401.jpeg');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/pexels-nickoloui-1319460 (1).jpg');
     background-size: cover;
     background-position: center;
-    display: flex;
-    align-items: center;
+    display: flex; /* Ajouté pour centrer verticalement */
+    align-items: center; /* Centrage vertical */
+    justify-content: center; /* Centrage horizontal */
     text-align: center;
     position: relative;
 }
@@ -263,10 +283,15 @@ p {
     margin: 0 auto;
     padding: 0 20px;
     color: var(--light-color);
+    text-align: center;
+    display: flex; /* Ajouté pour structure en flex */
+    flex-direction: column; /* Organisation en colonne */
+    align-items: center; /* Centrage horizontal des éléments enfants */
+    gap: 15px; /* Espacement entre les éléments */
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 3.8rem; /* Légèrement plus grand */
     margin-bottom: 20px;
     opacity: 0;
     animation: fadeIn 1s forwards 0.5s;
@@ -288,8 +313,26 @@ p {
 }
 
 .hero .btn {
-    opacity: 0;
-    animation: bounceIn 1s forwards 2s;
+    display: inline-block; /* Basic display */
+    /* margin: 10px; <-- Removed margin, handled by flex gap */
+    /* Removed all other potentially conflicting rules */
+}
+
+/* Style for the new button container */
+.hero-buttons {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    align-items: center; /* Align buttons vertically if they wrap */
+    gap: 20px; /* Space between buttons */
+    margin-top: 30px; /* Plus d'espace au-dessus des boutons */
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    animation: fadeIn 1s forwards 2s; /* Animation ajoutée */
+}
+
+.hero .btn {
+    min-width: 200px; /* Largeur minimale pour uniformité */
+    text-align: center;
+    font-weight: 600; /* Un peu plus gras */
 }
 
 /* Animations for hero section */
@@ -365,6 +408,10 @@ p {
     }
 }
 
+.about-text {
+    text-align: center; /* Center text within the about section's text block */
+}
+
 .about-text h3 {
     color: var(--secondary-color);
     margin-bottom: 20px;
@@ -386,19 +433,50 @@ p {
 
 .skill-bar {
     width: 100%;
-    height: 8px;
+    height: 12px; /* Increased height */
     background-color: var(--gray-color);
     border-radius: 10px;
     overflow: hidden;
 }
 
 .skill-progress {
-    height: 100%;
+    height: 100%; /* Will match parent height (12px) */
     background-color: var(--primary-color);
     border-radius: 10px;
     position: relative;
     width: 0;
     transition: width 1.5s ease-in-out;
+    display: flex; /* Added for percentage label */
+    align-items: center; /* Added for percentage label */
+    justify-content: flex-end; /* Added for percentage label */
+    position: relative; /* Needed for pseudo-element */
+}
+
+/* Add percentage label inside the progress bar */
+.skill-progress::after {
+    content: attr(data-width) '%'; /* Use the data-width attribute and append '%' */
+    position: absolute;
+    right: 10px;
+    color: var(--dark-color); /* Changed back to dark color */
+    font-size: 0.7em; /* Reduced font size */
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out 0.5s; /* Delay opacity transition */
+}
+
+.skill.active .skill-progress::after {
+    opacity: 1; /* Show percentage when skill is revealed */
+}
+
+
+/* Skills Section Specific Styles */
+.skills-section {
+    background-color: var(--gray-color); /* Light background for contrast */
+}
+
+.skills-section .skills {
+    max-width: 800px; /* Center the skills container */
+    margin: 0 auto;
 }
 
 /* Services Section */
@@ -642,6 +720,14 @@ p {
     box-shadow: 0 0 0 3px rgba(247, 172, 166, 0.3);
 }
 
+/* Center the button within the contact form */
+.contact-form .btn {
+    margin-left: auto;
+    margin-right: auto;
+    display: block; /* Make it a block element to allow auto margins */
+    width: fit-content; /* Adjust width to content */
+}
+
 /* Footer */
 .footer {
     background-color: var(--dark-color);
@@ -653,7 +739,7 @@ p {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .footer-logo h2 {
@@ -676,6 +762,32 @@ p {
 .footer-links ul li a:hover {
     color: var(--primary-color);
     margin-left: 5px;
+}
+
+/* Footer Social Icon Styling */
+.footer-logo .social-footer {
+    margin-top: 20px; /* Add space above the icon */
+    text-align: left; /* Align icon to the left */
+}
+
+.footer-logo .social-icon {
+    width: 40px; /* Slightly smaller icon */
+    height: 40px;
+    display: inline-flex; /* Use inline-flex */
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border-radius: 50%;
+    transition: var(--transition);
+    font-size: 1.2rem; /* Adjust icon size */
+    /* Remove margin: 0 auto; */
+}
+
+.footer-logo .social-icon:hover {
+    background-color: #E1306C;
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .footer-bottom {
