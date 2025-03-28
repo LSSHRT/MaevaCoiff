@@ -219,3 +219,47 @@
 .card-gradient:hover::before {
     opacity: 1;
 }
+
+/* Ajustements d'animations pour mobiles */
+@media screen and (max-width: 768px) {
+    /* Réduction de certaines animations sur mobile pour améliorer les performances */
+    .gallery-item {
+        animation: none !important;
+        animation-play-state: paused !important;
+    }
+    
+    .gallery-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    .shape-blob {
+        animation-duration: 30s; /* Animation plus lente sur mobile */
+    }
+    
+    /* Simplifier les animations des boutons sur mobile */
+    .bounce {
+        animation: bounce 3s infinite; /* Plus lent sur mobile */
+    }
+    
+    .btn:hover {
+        animation: none; /* Désactiver wobble sur mobile */
+    }
+    
+    /* Optimisation pour le touch sur mobile */
+    .btn-3d:hover, .card-hover:hover {
+        transform: translateY(-5px); /* Effet de hover simplifié */
+    }
+    
+    /* Réduire la taille de l'effet ripple sur mobile */
+    @keyframes ripple-effect {
+        0% {
+            transform: scale(0);
+            opacity: 0.7;
+        }
+        100% {
+            transform: scale(30); /* Plus petit que 50 sur desktop */
+            opacity: 0;
+        }
+    }
+}

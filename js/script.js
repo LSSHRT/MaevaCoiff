@@ -316,4 +316,58 @@ document.addEventListener('DOMContentLoaded', function() {
         // Start typing after a short delay
         setTimeout(typeText, 500);
     }
+
+    // Détection du mobile pour optimiser les animations
+    const isMobile = window.innerWidth <= 768;
+
+    // Fonction pour optimiser certaines animations sur mobile
+    function optimizeMobileAnimations() {
+        if (isMobile) {
+            // Simplifier les effets de parallaxe sur mobile
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                
+                // Parallaxe réduit pour l'image "à propos" sur mobile
+                const aboutImg = document.querySelector('.about-img');
+                if (aboutImg) {
+                    aboutImg.style.transform = `translateY(${scrolled * 0.02}px)`; // Effet réduit
+                }
+            });
+            
+            // Simplifier les animations de click sur mobile pour de meilleures performances
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.removeEventListener('mousemove', null); // Supprimer tout eventListener mousemove
+                
+                // Simplifier l'effet de ripple sur mobile
+                item.addEventListener('click', (e) => {
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    item.appendChild(ripple);
+                    
+                    // Position centrée sur mobile plutôt que sur le point exact du clic
+                    ripple.style.left = `50%`;
+                    ripple.style.top = `50%`;
+                    ripple.style.transform = `translate(-50%, -50%)`;
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 400); // Animation plus courte sur mobile
+                });
+            });
+        }
+    }
+
+    // Optimiser pour mobile
+    optimizeMobileAnimations();
+    
+    // Redimensionnement de la fenêtre
+    window.addEventListener('resize', function() {
+        const wasIsMobile = isMobile;
+        const isNowMobile = window.innerWidth <= 768;
+        
+        // Si l'état du mobile a changé (passage de desktop à mobile ou vice versa)
+        if (wasIsMobile !== isNowMobile) {
+            location.reload(); // Recharger la page pour appliquer les bonnes optimisations
+        }
+    });
 });
