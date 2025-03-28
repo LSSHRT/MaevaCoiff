@@ -1,0 +1,221 @@
+/* animations.css - Fichier d'animations supplémentaires pour le site de Maéva Coiffure */
+
+/* Ripple Effect */
+.ripple {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-effect 0.6s linear;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes ripple-effect {
+    0% {
+        transform: scale(0);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(50);
+        opacity: 0;
+    }
+}
+
+/* Wobble animation for buttons on hover */
+@keyframes wobble {
+    0%, 100% {
+        transform: translateX(0%);
+    }
+    15% {
+        transform: translateX(-5%) rotate(-5deg);
+    }
+    30% {
+        transform: translateX(3%) rotate(3deg);
+    }
+    45% {
+        transform: translateX(-3%) rotate(-3deg);
+    }
+    60% {
+        transform: translateX(2%) rotate(2deg);
+    }
+    75% {
+        transform: translateX(-1%) rotate(-1deg);
+    }
+}
+
+.btn:hover {
+    animation: wobble 0.8s ease-in-out;
+}
+
+/* Floating animation */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.float {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Glowing effect for important elements */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(247, 172, 166, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(247, 172, 166, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(247, 172, 166, 0.5);
+    }
+}
+
+.glow {
+    animation: glow 2s infinite;
+}
+
+/* Shake effect */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.8s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Heartbeat effect */
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.1); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.15); }
+    70% { transform: scale(1); }
+}
+
+.heartbeat {
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+/* Text highlight effect */
+@keyframes highlight {
+    0% { 
+        background-position: -100% 0;
+    }
+    100% { 
+        background-position: 200% 0;
+    }
+}
+
+.highlight-text {
+    background: linear-gradient(90deg, transparent 0%, rgba(247, 172, 166, 0.3) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: highlight 3s infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+/* Background wave effect */
+@keyframes wave {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.wave-bg {
+    background: linear-gradient(45deg, 
+        #f7aca6, 
+        #644e5b, 
+        #e86969, 
+        #f7aca6);
+    background-size: 400% 400%;
+    animation: wave 15s ease infinite;
+}
+
+/* Typing cursor effect */
+.typing {
+    border-right: 2px solid #e86969;
+    animation: typing-cursor 0.8s step-end infinite;
+}
+
+@keyframes typing-cursor {
+    from, to { border-color: transparent; }
+    50% { border-color: #e86969; }
+}
+
+/* Flashing effect */
+@keyframes flash {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0.5; }
+}
+
+.flash {
+    animation: flash 2s infinite;
+}
+
+/* Rotated image hover effect */
+.rotate-hover:hover {
+    transform: rotate(2deg) scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* Card hover effect with shadow */
+.card-hover {
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 3D button hover effect */
+.btn-3d {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn-3d:hover {
+    transform: perspective(1000px) rotateX(10deg) translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Radial gradient for cards */
+.card-gradient {
+    position: relative;
+}
+
+.card-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(247, 172, 166, 0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.card-gradient:hover::before {
+    opacity: 1;
+}

@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Scroll reveal animation
     function revealElements() {
-        const reveals = document.querySelectorAll('.reveal');
+        const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-up, .reveal-down');
         const windowHeight = window.innerHeight;
         
         reveals.forEach(element => {
@@ -97,10 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Add percentage sign directly in CSS content property using the data attribute
-    // This requires modifying the CSS again slightly. Let's do that after this JS fix.
-    // For now, the JS is fixed to not add the extra %.
-
     // Use Intersection Observer for skill bars animation trigger
     const skillsSection = document.querySelector('.skills-section'); // Target the new skills section
 
@@ -110,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Check if the skills section itself is intersecting
                 if (entry.isIntersecting) {
                     // Find all skill elements within the section
-                    const skillsInView = skillsSection.querySelectorAll('.skill.reveal');
+                    const skillsInView = skillsSection.querySelectorAll('.skill.reveal, .skill.reveal-left, .skill.reveal-right');
                     skillsInView.forEach(skillEl => {
                         // Add 'active' class if not already added by the main reveal observer
                         if (!skillEl.classList.contains('active')) {
@@ -126,14 +122,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { threshold: 0.2 }); // Trigger when 20% of the section is visible
 
         skillsObserver.observe(skillsSection);
-
-        // Also call animateSkillBars within the main reveal function
-        // to handle cases where skills are already visible on load
     }
 
      // Modify the main reveal function to also trigger skill bar animation
      function revealElements() {
-        const reveals = document.querySelectorAll('.reveal');
+        const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-up, .reveal-down, .fade-left, .fade-right, .fade-up, .fade-down, .zoom-in, .zoom-out');
         const windowHeight = window.innerHeight;
 
         reveals.forEach(element => {
@@ -147,14 +140,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     animateSkillBars();
                 }
             }
-            // Optional: Remove 'active' class if element scrolls out of view
-            // else {
-            //     element.classList.remove('active');
-            //     if (element.classList.contains('skill')) {
-            //         const progressBar = element.querySelector('.skill-progress');
-            //         if (progressBar) progressBar.style.width = '0%';
-            //     }
-            // }
         });
     }
 
@@ -182,8 +167,81 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(nextSlide, 5000);
     }
 
-    // Gallery image modal functionality removed
-    // No click events on gallery images as requested
+    // Add mousemove effect for the hero section
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
+            const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
+            
+            const heroContent = hero.querySelector('.hero-content');
+            heroContent.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+        
+        // Reset position when mouse leaves
+        hero.addEventListener('mouseleave', () => {
+            const heroContent = hero.querySelector('.hero-content');
+            heroContent.style.transform = 'translate(0px, 0px)';
+        });
+    }
+
+    // Add animated border effect for gallery items on hover
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            // Add box-shadow animation
+            item.style.boxShadow = '0 0 0 2px var(--primary-color), 0 15px 30px rgba(0,0,0,0.2)';
+            item.style.transform = 'scale(1.05) rotateZ(1deg)';
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            item.style.boxShadow = '';
+            item.style.transform = '';
+        });
+    });
+
+    // Add subtle parallax scrolling effect
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        
+        // Parallax for about section
+        const aboutImg = document.querySelector('.about-img');
+        if (aboutImg) {
+            aboutImg.style.transform = `translateY(${scrolled * 0.05}px)`;
+        }
+        
+        // Parallax for section headers
+        document.querySelectorAll('.section-header h2').forEach(header => {
+            const position = header.getBoundingClientRect().top;
+            if (position < window.innerHeight && position > 0) {
+                header.style.transform = `translateY(${(position - window.innerHeight) * 0.05}px)`;
+            }
+        });
+    });
+
+    // Add interactive elements for each gallery image
+    document.querySelectorAll('.gallery-item').forEach(item => {
+        // Create a touch ripple effect
+        item.addEventListener('click', (e) => {
+            // Create ripple element
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            item.appendChild(ripple);
+            
+            // Position the ripple where clicked
+            const rect = item.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+            
+            // Remove after animation completes
+            setTimeout(() => {
+                ripple.remove();
+            }, 500);
+        });
+    });
 
     // Form submission (placeholder for actual functionality)
     const contactForm = document.querySelector('.contact-form form');
@@ -239,4 +297,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Add text typing animation to hero text
+    const heroH1 = document.querySelector('.hero h1');
+    if (heroH1 && heroH1.textContent) {
+        const text = heroH1.textContent;
+        heroH1.textContent = '';
+        let index = 0;
+        
+        function typeText() {
+            if (index < text.length) {
+                heroH1.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeText, 100);
+            }
+        }
+        
+        // Start typing after a short delay
+        setTimeout(typeText, 500);
+    }
 });
